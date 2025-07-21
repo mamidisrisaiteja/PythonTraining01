@@ -1,0 +1,42 @@
+'''count=5
+
+while count>0:
+    print("Countdown is:", count)
+    #count -= 1
+    count = count - 1
+
+# print numbers from 1 to 10
+i=0
+while i<=10:
+    print(i)
+    i += 1
+
+
+#7.2 Print even numbers using for loop
+for i in range(10):
+    if i % 2 == 0:
+        print(i)
+'''
+# 7.3 Write a while loop to print sum numbers from 1 to 5
+i=1
+total=0
+
+while (i<=5):
+    total+=i
+    i+=1
+    print("Sum is:", total)
+'''
+i = 1
+sum =0
+while i<=10:
+    sum=sum+i
+    i += 1
+print(sum)
+
+fruits=['apple', 'banana', 'cherry', 'date']
+for fruit in fruits:
+    if fruit=='cherry':
+        print("Cherry is found, breaking the loop")
+        break
+    print(f"Current fruit:{fruit}")
+    '''
