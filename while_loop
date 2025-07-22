@@ -26,12 +26,7 @@ while (i<=5):
     i+=1
     print("Sum is:", total)
 '''
-i = 1
-sum =0
-while i<=10:
-    sum=sum+i
-    i += 1
-print(sum)
+
 
 fruits=['apple', 'banana', 'cherry', 'date']
 for fruit in fruits:
@@ -40,3 +35,4 @@ for fruit in fruits:
         break
     print(f"Current fruit:{fruit}")
     '''
+
