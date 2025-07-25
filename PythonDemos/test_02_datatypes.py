@@ -8,5 +8,6 @@ my_list.insert(2,"Training")
 print(my_list)
 my_list.append("Doing good")
 print(my_list)
+print(my_list[::-1])
 del my_list[0]
 print(my_list)
