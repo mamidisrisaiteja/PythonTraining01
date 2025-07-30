@@ -31,4 +31,19 @@ def test_locator_check_box(page: Page):
         page.goto("https://practice.expandtesting.com/checkboxes")
         # page.get_by_label("Checkbox 1").click()
         # page.locator('.form-check-label').nth(0).click()
+        # as there are 2 elements matching
         page.locator('label[for="checkbox1"]')
+
+
+def test_locator_form_validation(page: Page):
+        page.goto("https://practice.expandtesting.com/form-validation")
+        page.get_by_label('Contact Name').fill("Jay")
+        #Be careful in selecting text wrt name, it not what is written in the attribute "name"
+        # rather it is the display label "Contact number"
+        page.get_by_role('textbox',name='Contact number').fill("950-5999999")
+        #Also make sure to see that the date is given in YYYY-MM-DD format
+        page.locator("#validationCustom05[type='date']").fill("2025-07-30")
+        time.sleep(5)
+        # here also the option is 'cash on delivery' which the text that is being displayed
+        page.get_by_role('combobox').select_option('cash on delivery')
+        page.locator(".btn.btn-primary").click()
