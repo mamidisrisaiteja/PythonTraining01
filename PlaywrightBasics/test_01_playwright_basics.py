@@ -28,5 +28,7 @@ def test_locator_login_elements(page: Page):
 
 
 def test_locator_check_box(page: Page):
-        page.goto("https://practice.expandtesting.com/login")
-        page.get_by_role("Checkbox 2").click()
+        page.goto("https://practice.expandtesting.com/checkboxes")
+        # page.get_by_label("Checkbox 1").click()
+        # page.locator('.form-check-label').nth(0).click()
+        page.locator('label[for="checkbox1"]')
