@@ -1,3 +1,4 @@
+import re
 import time
 
 from playwright.sync_api import Playwright
@@ -63,3 +64,31 @@ def test_login_fireFoxBrowser(playwright : Playwright):
     page.get_by_label("Username").fill("practice")
     page.get_by_label("Password").fill("SuperSecretPassword!")
     page.get_by_role("button", name="Login").click()
+
+def test_locator_click_link(page: Page):
+    page.goto("https://practice.expandtesting.com/locators")
+    page.get_by_role('link',name='Contact').click()
+    text= page.locator(".badge.text-bg-warning").text_content()
+    print(text)
+
+def test_filter_email(page: Page):
+    page.goto("https://practice.expandtesting.com/contact")
+    full_text = page.text_content("body")
+    email_pattern = r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+    emails_found = re.findall(email_pattern, full_text)
+    print(emails_found)
+
+def test_filter_fourDigit(page: Page):
+        page.goto("https://practice.expandtesting.com/contact")
+        full_text = page.text_content("body")
+        year_pattern = r"[0-9]{4}"
+        year_found = re.findall(year_pattern, full_text)
+        print(year_found)
+
+def test_filter_year(page: Page):
+    page.goto("https://practice.expandtesting.com/contact")
+    full_text = page.text_content("body")
+    year_pattern = r"\b2\[0-9]{3}\b}"
+    year_found = re.findall(year_pattern, full_text)
+    print(year_found)
+
