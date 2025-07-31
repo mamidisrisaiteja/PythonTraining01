@@ -1,6 +1,8 @@
 import time
 
-from playwright.sync_api import Page
+from playwright.sync_api import Playwright
+from playwright.sync_api import Page, expect
+
 
 def test_playwright_one(playwright):
     # - Launches a Chromium browser instance with the GUI visible (headless=False = headed mode).
@@ -26,6 +28,12 @@ def test_locator_login_elements(page: Page):
     page.get_by_label("Password").fill("SuperSecretPassword!")
     page.get_by_role("button",name="Login").click()
 
+def test_locator_incorrect_login_actions(page: Page):
+    page.goto("https://practice.expandtesting.com/login")
+    page.get_by_label("Username").fill("practice")
+    page.get_by_label("Password").fill("SuperSecretPassword")
+    page.get_by_role("button",name="Login").click()
+    expect(page.get_by_text("Your password is invalid!"))
 
 def test_locator_check_box(page: Page):
         page.goto("https://practice.expandtesting.com/checkboxes")
@@ -47,3 +55,11 @@ def test_locator_form_validation(page: Page):
         # here also the option is 'cash on delivery' which the text that is being displayed
         page.get_by_role('combobox').select_option('cash on delivery')
         page.locator(".btn.btn-primary").click()
+
+def test_login_fireFoxBrowser(playwright : Playwright):
+    browser=playwright.firefox.launch(headless=False)
+    page=browser.new_page()
+    page.goto("https://practice.expandtesting.com/login")
+    page.get_by_label("Username").fill("practice")
+    page.get_by_label("Password").fill("SuperSecretPassword!")
+    page.get_by_role("button", name="Login").click()
